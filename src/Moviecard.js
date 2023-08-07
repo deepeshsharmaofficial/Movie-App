@@ -16,12 +16,15 @@ class MovieCard extends Component {
             price: 199,
             rating: 8.9,
         }
+        // this.addStars = this.addStars.bind(this);
+    }
+
+    addStars = () => {
+        console.log("this.state: ", this.state);
     }
 
     render() {
-        const {title, plot, price, rating} = this.state; // alternative of this.state.title
-        // After using this, 
-
+        const {title, plot, price, rating} = this.state;
         return (
             <div className="main">
                 <div className="movie-card">
@@ -50,7 +53,9 @@ class MovieCard extends Component {
                                 <img
                                 src="https://cdn-icons-png.flaticon.com/128/748/748113.png" 
                                 alt="increase" 
-                                className="str-btn"/>
+                                className="str-btn"
+                                onClick={this.addStars}
+                                />
 
                                 <span>0</span>
 
