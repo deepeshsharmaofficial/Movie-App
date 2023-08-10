@@ -17,6 +17,7 @@ constructor() {
         rating: 8.9,
         stars :0,
         fav: false,
+        cart: false,
     }
     // this.addStars = this.addStars.bind(this);
 }
@@ -64,8 +65,14 @@ handleFav = () => {
     })
 }
 
+handleCart = () => {
+    this.setState({
+        cart: !this.state.cart
+    })
+}
+
 render() {
-    const {title, plot, price, rating, stars, fav} = this.state;
+    const {title, plot, price, rating, stars, fav, cart} = this.state;
     return (
         <div className="main">
             <div className="movie-card">
@@ -108,8 +115,8 @@ render() {
                         <button className="favourite-btn" onClick={this.handleFav}>Favourite</button>} */}
 
                         <button className={fav ? "unfavourite-btn":"favourite-btn"} onClick={this.handleFav}>{fav ? "Unfavourite":"Favourite"}</button>
-
-                        <button className="cart-btn">Add to Card</button>
+                        
+                        <button className={cart ? "remove-cart-btn" : "cart-btn"} onClick={this.handleCart}>{cart ? "Remove to Card" : "Add to Card"}</button>
                     </div>
                 </div>
             </div>
