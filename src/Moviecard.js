@@ -2,8 +2,8 @@ import {Component} from "react";
 
 class MovieCard extends Component {
 
-render() {
-    const {title, plot, price, rating, stars, fav, cart} = this.props.movies;
+    render() {
+        const {title, plot, price, rating, stars, fav, cart, poster} = this.props.movies;
         
         // We can do it like that also
         // const {movies: data} = this.props;
@@ -13,7 +13,7 @@ render() {
             <div className="main">
                 <div className="movie-card">
                     <div className="left">
-                        <img alt="poster" src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"></img>
+                        <img alt="poster" src={poster}></img>
                     </div>
 
                     <div className="right">
