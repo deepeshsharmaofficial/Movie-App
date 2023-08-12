@@ -3,7 +3,7 @@ import {Component} from "react";
 class MovieCard extends Component {
 
     render() {
-        const {title, plot, price, rating, stars, fav, cart, poster} = this.props.movies;
+        const {title, plot, price, rating, star, fav, cart, poster} = this.props.movies;
         
         // We can do it like that also
         // const {movies: data} = this.props;
@@ -28,7 +28,7 @@ class MovieCard extends Component {
                                 src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png" 
                                 alt="decrease" 
                                 className="str-btn"
-                                onClick={this.decStars}
+                                onClick={() => {this.props.decStar(this.props.movies)}}
                                 />
 
                                 <img
@@ -40,19 +40,28 @@ class MovieCard extends Component {
                                 src="https://cdn-icons-png.flaticon.com/128/748/748113.png" 
                                 alt="increase" 
                                 className="str-btn"
-                                onClick={this.addStars}
+                                onClick={() => {this.props.addStar(this.props.movies)}}
                                 />
 
-                                <span>{stars}</span>
+                                <span>{star}</span>
 
                             </div>
 
                             {/* {fav ? <button className="unfavourite-btn" onClick={this.handleFav}>Un-favourite</button> : 
                             <button className="favourite-btn" onClick={this.handleFav}>Favourite</button>} */}
 
-                            <button className={fav ? "unfavourite-btn":"favourite-btn"} onClick={this.handleFav}>{fav ? "Unfavourite":"Favourite"}</button>
+
+                            <button className={fav ? "unfavourite-btn":"favourite-btn"}
+                                    onClick={() => this.props.toggleFav(this.props.movies)}>
+                                        {fav ? "Unfavourite":"Favourite"}
+                            </button>
+
                             
-                            <button className={cart ? "remove-cart-btn" : "cart-btn"} onClick={this.handleCart}>{cart ? "Remove to Card" : "Add to Card"}</button>
+                            <button className={cart ? "remove-cart-btn" : "cart-btn"} 
+                                    onClick={() => this.props.addToCart(this.props.movies)}>
+                                        {cart ? "Remove to Card" : "Add to Card"}
+                            </button>
+
                         </div>
                     </div>
                 </div>

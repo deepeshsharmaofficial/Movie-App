@@ -26,9 +26,9 @@ class MovieList extends Component {
                   title: 'The Dark Knight',                  
                   plot: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
                   poster: 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg',                  
-                  rating: '9.0',            
+                  rating: '9.0',
                   price: 198,            
-                  star: 0,            
+                  star: 0,
                   fav: false,
                   cart: false                  
                 },
@@ -36,29 +36,85 @@ class MovieList extends Component {
                   title: 'Iron Man',                 
                   plot: 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.',                  
                   poster: 'https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg',                  
-                  rating: '7.9',            
-                  price: 139,            
-                  star: 0,            
+                  rating: '7.9',
+                  price: 139,
+                  star: 0,      
                   fav: false,
-                  cart: false                 
+                  cart: false                  
                 }]
         }
         // this.addStars = this.addStars.bind(this);
     }
 
+    handleAddStar = (movie) => {
+      const {movies} = this.state;
+
+      // const movieId = this.state.movies.indexOf(movie);
+      const movieId = movies.indexOf(movie);
+
+      if (movies[movieId].star < 5) {
+        movies[movieId].star += 0.5;
+      }
+
+      this.setState({
+        movies: movies
+      })
+    }
+
+    handleDecStar = (movie) => {
+      const {movies} = this.state;
+      const movieId = movies.indexOf(movie);
+
+      if (movies[movieId].star > 0) {
+        movies[movieId].star -= 0.5;
+      }
+
+      this.setState({
+        movies: movies
+      })
+    }
+
+    handleAddToCart = (movie) => {
+      const {movies} = this.state;
+      const movieId = movies.indexOf(movie);
+
+      movies[movieId].cart = !movies[movieId].cart;
+
+      this.setState({
+        movies: movies
+      })
+    }
+
+    handleToggleFav = (movie) => {
+      const {movies} = this.state;
+      const movieId = movies.indexOf(movie);
+
+      movies[movieId].fav = !movies[movieId].fav;
+
+      this.setState({
+        movies: movies
+      })
+    }
 
     render() {
         // const { title, plot, price, rating, stars, fav, cart } = this.state;
-
+        
         const {movies} = this.state;
         return (
             <>
-
+            
             {/* {this.state.movies.map((movie) => <MovieCard movies = {movie} />)} */}
 
             {/* Otherwise We can destructured it */}
-            {movies.map((movie) => <MovieCard movies = {movie} />)}
-            
+            {movies.map((movie, index) =>(
+              <MovieCard movies = {movie} 
+                         key = {index}
+                         addStar= {this.handleAddStar}
+                         decStar = {this.handleDecStar}
+                         addToCart = {this.handleAddToCart}
+                         toggleFav = {this.handleToggleFav}/>
+              ))}
+
             {/* <MovieCard title={title} 
                         plot={plot} 
                         price={price}
