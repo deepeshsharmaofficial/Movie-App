@@ -15,7 +15,9 @@ const Title = styled.div `
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
     textTransform: uppercase;
-    margin-left: 20px
+    margin-left: 20px;
+    
+    &:hover {color: grey} // Hover
 `;
 
 const CartImg = styled.img`
@@ -29,7 +31,10 @@ const CartIconContainer = styled.div`
 `;
 
 const CartCount = styled.div`
-    background: yellow;
+    background: ${(props) => props.color};
+    display: ${(props) => (
+        props.show ? "block" : "none"
+    )};
     border-radius: 50%;
     padding: 4px 8px;
     position: absolute;
@@ -51,7 +56,9 @@ class Navbar extends Component {
                     src="https://cdn-icons-png.flaticon.com/128/891/891462.png"
                     alt="cart-icon"
                 />
-                <CartCount>3</CartCount>
+
+                {/* Here color is props */}
+                <CartCount color="yellow" show = {false}>3</CartCount> 
             </CartIconContainer>
         </Nav>
         </>
