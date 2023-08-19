@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import styled from "styled-components";
 
 const Nav = styled.div `
@@ -44,10 +43,10 @@ const CartCount = styled.div`
 `;
 
 
-class Navbar extends Component {
-  render() {
+function Navbar(props) {
+
     // console.log(this.props);
-    const {cartCount} = this.props;
+    const {cartCount} = props;
     return (
         <>
         <Nav>
@@ -65,7 +64,6 @@ class Navbar extends Component {
         </Nav>
         </>
     )
-  }
 }
 
 export default Navbar;

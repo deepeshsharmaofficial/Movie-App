@@ -1,76 +1,72 @@
-import {Component} from "react";
+function MovieCard (props) {
+    const {title, plot, price, rating, star, fav, cart, poster} = props.movies;
+    
+    // We can do it like that also
+    // const {movies: data} = this.props;
+    // const {title, plot, price, rating, stars, fav, cart} = data;
+    
+    return (
+        <div className="main">
+            <div className="movie-card">
+                <div className="left">
+                    <img alt="poster" src={poster}></img>
+                </div>
 
-class MovieCard extends Component {
+                <div className="right">
+                    <div className="title">{title}</div>
+                    <div className="plot">{plot}</div>
+                    <div className="price">Rs.{price}</div>
 
-    render() {
-        const {title, plot, price, rating, star, fav, cart, poster} = this.props.movies;
-        const {movies, decStar, addStar, toggleFav, addToCart} = this.props;
+                    <div className="footer">
+                        <div className="rating">{rating}</div>
+                        <div className="star-dis">
+                            <img
+                            src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png" 
+                            alt="decrease" 
+                            className="str-btn"
+                            onClick={() => {props.decStar(props.movies)}}
+                            />
 
-        // We can do it like that also
-        // const {movies: data} = this.props;
-        // const {title, plot, price, rating, stars, fav, cart} = data;
-        
-        return (
-            <div className="main">
-                <div className="movie-card">
-                    <div className="left">
-                        <img alt="poster" src={poster}></img>
-                    </div>
-
-                    <div className="right">
-                        <div className="title">{title}</div>
-                        <div className="plot">{plot}</div>
-                        <div className="price">Rs.{price}</div>
-
-                        <div className="footer">
-                            <div className="rating">{rating}</div>
-                            <div className="star-dis">
-                                <img
-                                src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png" 
-                                alt="decrease" 
-                                className="str-btn"
-                                onClick={() => {decStar(movies)}}
-                                />
-
-                                <img
-                                src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" 
-                                alt="" 
-                                className="stars"/>
-                                
-                                <img
-                                src="https://cdn-icons-png.flaticon.com/128/748/748113.png" 
-                                alt="increase" 
-                                className="str-btn"
-                                onClick={() => {addStar(movies)}}
-                                />
-
-                                <span>{star}</span>
-
-                            </div>
-
-                            {/* {fav ? <button className="unfavourite-btn" onClick={this.handleFav}>Un-favourite</button> : 
-                            <button className="favourite-btn" onClick={this.handleFav}>Favourite</button>} */}
-
-
-                            <button className={fav ? "unfavourite-btn":"favourite-btn"}
-                                    onClick={() => toggleFav(movies)}>
-                                        {fav ? "Unfavourite":"Favourite"}
-                            </button>
-
+                            <img
+                            src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" 
+                            alt="" 
+                            className="stars"/>
                             
-                            <button className={cart ? "remove-cart-btn" : "cart-btn"} 
-                                    onClick={() => addToCart(movies)}>
-                                        {cart ? "Remove to Card" : "Add to Card"}
-                            </button>
+                            <img
+                            src="https://cdn-icons-png.flaticon.com/128/748/748113.png" 
+                            alt="increase" 
+                            className="str-btn"
+                            onClick={() => {props.addStar(props.movies)}}
+                            />
+
+                            <span>{star}</span>
 
                         </div>
+
+                        {/* {fav ? <button className="unfavourite-btn" onClick={this.handleFav}>Un-favourite</button> : 
+                        <button className="favourite-btn" onClick={this.handleFav}>Favourite</button>} */}
+
+                        
+                        <button className={fav ? "unfavourite-btn":"favourite-btn"}
+                                onClick={() => props.toggleFav(props.movies)}>
+                                    {fav ? "Unfavourite":"Favourite"}
+                        </button>
+                        
+                        
+                        <button className={cart ? "remove-cart-btn" : "cart-btn"} 
+                                onClick={() => props.addToCart(props.movies)}>
+                                    {cart ? "Remove to Card" : "Add to Card"}
+                        </button>
+                       
+
                     </div>
                 </div>
-                
-
             </div>
-        )
-    }
+            
+
+        </div>
+    )
+
 }
 
 export default MovieCard;
