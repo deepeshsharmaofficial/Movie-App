@@ -14,7 +14,7 @@ const Title = styled.div `
     color: #fff;
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
-    textTransform: uppercase;
+    text-transform: uppercase;
     margin-left: 20px;
     
     &:hover {color: grey} // Hover
@@ -58,7 +58,7 @@ class Navbar extends Component {
                 />
 
                 {/* Here color is props */}
-                <CartCount color="yellow" show = {false}>3</CartCount> 
+                <CartCount color="yellow" show = {true}>3</CartCount> 
             </CartIconContainer>
         </Nav>
         </>
