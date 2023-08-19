@@ -4,7 +4,8 @@ class MovieCard extends Component {
 
     render() {
         const {title, plot, price, rating, star, fav, cart, poster} = this.props.movies;
-        
+        const {movies, decStar, addStar, toggleFav, addToCart} = this.props;
+
         // We can do it like that also
         // const {movies: data} = this.props;
         // const {title, plot, price, rating, stars, fav, cart} = data;
@@ -28,7 +29,7 @@ class MovieCard extends Component {
                                 src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png" 
                                 alt="decrease" 
                                 className="str-btn"
-                                onClick={() => {this.props.decStar(this.props.movies)}}
+                                onClick={() => {decStar(movies)}}
                                 />
 
                                 <img
@@ -40,7 +41,7 @@ class MovieCard extends Component {
                                 src="https://cdn-icons-png.flaticon.com/128/748/748113.png" 
                                 alt="increase" 
                                 className="str-btn"
-                                onClick={() => {this.props.addStar(this.props.movies)}}
+                                onClick={() => {addStar(movies)}}
                                 />
 
                                 <span>{star}</span>
@@ -52,13 +53,13 @@ class MovieCard extends Component {
 
 
                             <button className={fav ? "unfavourite-btn":"favourite-btn"}
-                                    onClick={() => this.props.toggleFav(this.props.movies)}>
+                                    onClick={() => toggleFav(movies)}>
                                         {fav ? "Unfavourite":"Favourite"}
                             </button>
 
                             
                             <button className={cart ? "remove-cart-btn" : "cart-btn"} 
-                                    onClick={() => this.props.addToCart(this.props.movies)}>
+                                    onClick={() => addToCart(movies)}>
                                         {cart ? "Remove to Card" : "Add to Card"}
                             </button>
 
