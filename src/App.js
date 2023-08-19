@@ -42,14 +42,22 @@ class App extends React.Component {
   };
 
   handleAddToCart = (movie) => {
-    const { movies } = this.state;
+    let {movies, cartCount} = this.state;
     const movieId = movies.indexOf(movie);
 
     movies[movieId].cart = !movies[movieId].cart;
 
+    if (movies[movieId].cart) {
+      cartCount = cartCount + 1;
+    } else {
+      cartCount = cartCount - 1;
+    }
+
     this.setState({
       movies: movies,
+      cartCount: cartCount
     });
+    console.log(cartCount);
   };
 
   handleToggleFav = (movie) => {
@@ -64,11 +72,11 @@ class App extends React.Component {
   };
 
   render() {
-    const {movies} = this.state;
+    const {movies, cartCount} = this.state;
 
     return (
       <>
-        <Navbar />
+        <Navbar cartCount = {cartCount}/>
         <MovieList movies = {movies} 
                    addStar= {this.handleAddStar}
                    decStar = {this.handleDecStar}

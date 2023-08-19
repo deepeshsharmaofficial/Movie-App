@@ -46,6 +46,8 @@ const CartCount = styled.div`
 
 class Navbar extends Component {
   render() {
+    // console.log(this.props);
+    const {cartCount} = this.props;
     return (
         <>
         <Nav>
@@ -58,7 +60,7 @@ class Navbar extends Component {
                 />
 
                 {/* Here color is props */}
-                <CartCount color="yellow" show = {true}>3</CartCount> 
+                <CartCount color="yellow" show = {true}> {cartCount} </CartCount> 
             </CartIconContainer>
         </Nav>
         </>
